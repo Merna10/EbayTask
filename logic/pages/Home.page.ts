@@ -1,17 +1,16 @@
 import { Locator, Page, expect } from "@playwright/test";
 import {step} from "../../utils/config/StepDecorator"
+import { BrowserActions } from "../../lib/BrowserActions";
 
-export class HomePage{
-
-    private readonly page           :Page;
-
+export class HomePage extends BrowserActions{
+    
     constructor(page:Page){
-        this.page                   =page;
+        super(page);
     }
 
     @step("Open Home Page")
     async openHomePage(baseURL:string):Promise<void>{
-        await this.page.goto(baseURL,{waitUntil:"domcontentloaded"});
+        await this.navigate(baseURL);
     }
 
 
